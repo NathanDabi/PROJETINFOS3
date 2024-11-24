@@ -1,0 +1,39 @@
+import matplotlib.pyplot as plt
+import folium
+
+# Coordinates of key locations
+coords = {
+    "Place Wagram": [48.8825, 2.3005],
+    "Arc de Triomphe": [48.8738, 2.2950],
+    "Trocadéro": [48.8628, 2.2875],
+    "Pont d'Iéna": [48.8605, 2.2950],
+    "Pont de l'Alma": [48.8634, 2.2985],
+    "Avenue George V": [48.8686, 2.3038],
+    "Champs-Élysées": [48.8704, 2.3052],
+}
+
+# Initialize map
+m = folium.Map(location=coords["Place Wagram"], zoom_start=14)
+
+# Add points to the map
+for name, location in coords.items():
+    folium.Marker(location, popup=name).add_to(m)
+
+# Add lines for the route
+route = [
+    coords["Place Wagram"],
+    coords["Arc de Triomphe"],
+    coords["Trocadéro"],
+    coords["Pont d'Iéna"],
+    coords["Pont de l'Alma"],
+    coords["Avenue George V"],
+    coords["Champs-Élysées"],
+    coords["Arc de Triomphe"],  # Returning to Arc de Triomphe before Place Wagram
+    coords["Place Wagram"],
+]
+folium.PolyLine(route, color="blue", weight=3).add_to(m)
+
+# Save the map to a file
+map_path = r"C:\Users\sacha\SachaCOGO\pythonProject3\Wagram_Balade_Map.html"
+m.save(map_path)
+print(f"Carte sauvegardée ici : {map_path}")

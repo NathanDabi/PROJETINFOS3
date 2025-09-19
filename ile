@@ -34,6 +34,6 @@ route = [
 folium.PolyLine(route, color="blue", weight=3).add_to(m)
 
 # Save the map to a file
-map_path = r"C:\Users\sacha\SachaCOGO\pythonProject3\Wagram_Balade_Map.html"
+
 m.save(map_path)
 print(f"Carte sauvegardée ici : {map_path}")
